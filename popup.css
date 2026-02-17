@@ -1,0 +1,14 @@
+body { width:220px; font-family:sans-serif; padding:12px; }
+button {
+  width:100%;
+  padding: 10px;
+  font-size: 14px;
+  border:none;
+  border-radius:5px;
+  margin-bottom: 8px;
+  background: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+button:hover { background: #45a049; }
+footer { margin-top:10px; font-size:10px; text-align:center; color:#666; }
