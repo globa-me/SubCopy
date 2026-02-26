@@ -1,0 +1,16 @@
+{
+  "appName": { "message": "SubCopy" },
+  "appDescription": { "message": "दिखाई देने वाले YouTube सबटाइटल्स को क्लिपबोर्ड में कॉपी करें।" },
+  "popupCopyWithTs": { "message": "टाइमस्टैम्प के साथ कॉपी करें" },
+  "popupCopyWithoutTs": { "message": "टाइमस्टैम्प के बिना कॉपी करें" },
+  "popupFooter": { "message": "Gennadiy और Ivan द्वारा विकसित, 2026" },
+  "toastNoSubtitles": { "message": "कोई सबटाइटल नहीं मिला। कृपया CC सक्षम करें या ट्रांसस्क्रिप्ट खोलें।" },
+  "toastCopyWithTs": { "message": "टाइमस्टैम्प वाले सबटाइटल्स क्लिपबोर्ड में कॉपी किए गए।" },
+  "toastCopyWithoutTs": { "message": "सबटाइटल्स क्लिपबोर्ड में कॉपी किए गए।" },
+  "toastError": {
+    "message": "त्रुटि: $1",
+    "placeholders": {
+      "detail": { "content": "$1" }
+    }
+  }
+}

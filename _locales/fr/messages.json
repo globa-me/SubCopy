@@ -1,0 +1,16 @@
+{
+  "appName": { "message": "SubCopy" },
+  "appDescription": { "message": "Copiez les sous-titres YouTube visibles vers le presse-papiers." },
+  "popupCopyWithTs": { "message": "Copier avec horodatages" },
+  "popupCopyWithoutTs": { "message": "Copier sans horodatages" },
+  "popupFooter": { "message": "Développé par Gennadiy et Ivan, 2026" },
+  "toastNoSubtitles": { "message": "Aucun sous-titre trouvé. Activez les CC ou ouvrez la transcription." },
+  "toastCopyWithTs": { "message": "Les sous-titres avec horodatages ont été copiés dans le presse-papiers." },
+  "toastCopyWithoutTs": { "message": "Les sous-titres ont été copiés dans le presse-papiers." },
+  "toastError": {
+    "message": "Erreur : $1",
+    "placeholders": {
+      "detail": { "content": "$1" }
+    }
+  }
+}

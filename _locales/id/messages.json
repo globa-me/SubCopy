@@ -1,0 +1,16 @@
+{
+  "appName": { "message": "SubCopy" },
+  "appDescription": { "message": "Salin subtitle YouTube yang terlihat ke papan klip." },
+  "popupCopyWithTs": { "message": "Salin dengan penanda waktu" },
+  "popupCopyWithoutTs": { "message": "Salin tanpa penanda waktu" },
+  "popupFooter": { "message": "Dikembangkan oleh Gennadiy & Ivan, 2026" },
+  "toastNoSubtitles": { "message": "Tidak ditemukan subtitle. Aktifkan CC atau buka transkrip." },
+  "toastCopyWithTs": { "message": "Subtitle dengan penanda waktu telah disalin ke papan klip." },
+  "toastCopyWithoutTs": { "message": "Subtitle telah disalin ke papan klip." },
+  "toastError": {
+    "message": "Kesalahan: $1",
+    "placeholders": {
+      "detail": { "content": "$1" }
+    }
+  }
+}

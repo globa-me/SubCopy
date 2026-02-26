@@ -1,0 +1,16 @@
+{
+  "appName": { "message": "SubCopy" },
+  "appDescription": { "message": "انسخ ترجمات YouTube الظاهرة إلى الحافظة." },
+  "popupCopyWithTs": { "message": "نسخ مع الطوابع الزمنية" },
+  "popupCopyWithoutTs": { "message": "نسخ بدون طوابع زمنية" },
+  "popupFooter": { "message": "تم التطوير بواسطة Gennadiy وIvan، 2026" },
+  "toastNoSubtitles": { "message": "لم يتم العثور على ترجمات. فعّل CC أو افتح النص." },
+  "toastCopyWithTs": { "message": "تم نسخ الترجمات مع الطوابع الزمنية إلى الحافظة." },
+  "toastCopyWithoutTs": { "message": "تم نسخ الترجمات إلى الحافظة." },
+  "toastError": {
+    "message": "خطأ: $1",
+    "placeholders": {
+      "detail": { "content": "$1" }
+    }
+  }
+}

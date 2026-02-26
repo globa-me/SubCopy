@@ -1,0 +1,16 @@
+{
+  "appName": { "message": "SubCopy" },
+  "appDescription": { "message": "Копируйте видимые субтитры YouTube в буфер обмена." },
+  "popupCopyWithTs": { "message": "Копировать с таймкодами" },
+  "popupCopyWithoutTs": { "message": "Копировать без таймкодов" },
+  "popupFooter": { "message": "Разработано Gennadiy и Ivan, 2026" },
+  "toastNoSubtitles": { "message": "Субтитры не найдены. Включите CC или откройте транскрипт." },
+  "toastCopyWithTs": { "message": "Субтитры с таймкодами скопированы в буфер обмена." },
+  "toastCopyWithoutTs": { "message": "Субтитры скопированы в буфер обмена." },
+  "toastError": {
+    "message": "Ошибка: $1",
+    "placeholders": {
+      "detail": { "content": "$1" }
+    }
+  }
+}

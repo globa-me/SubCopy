@@ -1,0 +1,16 @@
+{
+  "appName": { "message": "SubCopy" },
+  "appDescription": { "message": "将可见的 YouTube 字幕复制到剪贴板。" },
+  "popupCopyWithTs": { "message": "复制（含时间戳）" },
+  "popupCopyWithoutTs": { "message": "复制（不含时间戳）" },
+  "popupFooter": { "message": "由 Gennadiy 和 Ivan 开发，2026" },
+  "toastNoSubtitles": { "message": "未找到字幕。请启用字幕或打开文字稿。" },
+  "toastCopyWithTs": { "message": "含时间戳的字幕已复制到剪贴板。" },
+  "toastCopyWithoutTs": { "message": "字幕已复制到剪贴板。" },
+  "toastError": {
+    "message": "错误：$1",
+    "placeholders": {
+      "detail": { "content": "$1" }
+    }
+  }
+}

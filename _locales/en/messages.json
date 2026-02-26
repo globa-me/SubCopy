@@ -1,0 +1,16 @@
+{
+  "appName": { "message": "SubCopy" },
+  "appDescription": { "message": "Copy visible YouTube subtitles to the clipboard." },
+  "popupCopyWithTs": { "message": "Copy with timestamps" },
+  "popupCopyWithoutTs": { "message": "Copy without timestamps" },
+  "popupFooter": { "message": "Developed by Gennadiy & Ivan, 2026" },
+  "toastNoSubtitles": { "message": "No subtitles found. Enable CC or open transcript." },
+  "toastCopyWithTs": { "message": "Subtitles with TS copied to clipboard." },
+  "toastCopyWithoutTs": { "message": "Subtitles copied to clipboard." },
+  "toastError": {
+    "message": "Error: $1",
+    "placeholders": {
+      "detail": { "content": "$1" }
+    }
+  }
+}

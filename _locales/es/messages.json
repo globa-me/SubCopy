@@ -1,0 +1,16 @@
+{
+  "appName": { "message": "SubCopy" },
+  "appDescription": { "message": "Copia los subtítulos visibles de YouTube al portapapeles." },
+  "popupCopyWithTs": { "message": "Copiar con marcas de tiempo" },
+  "popupCopyWithoutTs": { "message": "Copiar sin marcas de tiempo" },
+  "popupFooter": { "message": "Desarrollado por Gennadiy e Ivan, 2026" },
+  "toastNoSubtitles": { "message": "No se encontraron subtítulos. Activa los CC o abre la transcripción." },
+  "toastCopyWithTs": { "message": "Los subtítulos con marcas de tiempo se copiaron al portapapeles." },
+  "toastCopyWithoutTs": { "message": "Los subtítulos se copiaron al portapapeles." },
+  "toastError": {
+    "message": "Error: $1",
+    "placeholders": {
+      "detail": { "content": "$1" }
+    }
+  }
+}

@@ -2,12 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="popup.css">
+  <style>
+    body { width:220px; font-family:sans-serif; padding:12px; }
+    button {
+      width:100%;
+      padding: 10px;
+      font-size: 14px;
+      border:none;
+      border-radius:5px;
+      margin-bottom: 8px;
+      background: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover { background: #45a049; }
+    footer { margin-top:10px; font-size:10px; text-align:center; color:#666; }
+  </style>
 </head>
 <body>
-  <button id="copyWithTimestamps">Copy with timestamps</button>
-  <button id="copyWithoutTimestamps">Copy without timestamps</button>
-  <footer>Developed by Gennadiy & Ivan, 2026</footer>
+  <button id="copyWithTimestamps"></button>
+  <button id="copyWithoutTimestamps"></button>
+  <footer><a id="popupFooter" href="#" target="_blank" rel="noopener noreferrer"></a></footer>
   <script src="popup.js"></script>
 </body>
 </html>
