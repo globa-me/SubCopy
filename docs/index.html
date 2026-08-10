@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="SubCopy copies YouTube subtitles to your clipboard in one click — with or without timestamps.">
+    <meta name="theme-color" content="#0f172a">
+    <title>SubCopy — YouTube subtitles, one click away</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #f8fafc;
+        --muted: #b8c5d6;
+        --surface: rgba(20, 30, 52, .76);
+        --line: rgba(203, 213, 225, .16);
+        --blue: #63b3ff;
+        --purple: #b08cff;
+        --green: #5ee6a8;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        min-width: 320px;
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 12% 0%, rgba(84, 114, 240, .25), transparent 29rem),
+          radial-gradient(circle at 88% 17%, rgba(156, 78, 218, .24), transparent 27rem),
+          #0b1120;
+        font: 16px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      a { color: inherit; }
+      .wrap { width: min(1120px, calc(100% - 40px)); margin: auto; }
+      header { display: flex; align-items: center; justify-content: space-between; padding: 25px 0; }
+      .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-size: 1.12rem; font-weight: 750; letter-spacing: -.02em; }
+      .brand-mark { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 9px; color: #07101c; background: linear-gradient(135deg, var(--green), #79adff); font-size: .9rem; font-weight: 900; }
+      .top-link { color: var(--muted); text-decoration: none; font-size: .94rem; }
+      .top-link:hover { color: white; }
+      .hero { display: grid; grid-template-columns: 1.07fr .93fr; gap: 60px; align-items: center; min-height: 580px; padding: 70px 0 88px; }
+      .eyebrow { color: var(--blue); font-weight: 700; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; }
+      h1 { max-width: 680px; margin: 16px 0 22px; font-size: clamp(2.8rem, 6vw, 5.4rem); line-height: .98; letter-spacing: -.065em; }
+      .lead { max-width: 570px; margin: 0; color: var(--muted); font-size: clamp(1.06rem, 2vw, 1.25rem); }
+      .actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
+      .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; padding: 0 19px; border: 1px solid transparent; border-radius: 999px; font-weight: 750; text-decoration: none; transition: transform .16s ease, background .16s ease; }
+      .button:hover { transform: translateY(-2px); }
+      .button.primary { color: #07101c; background: linear-gradient(115deg, var(--green), #74baff); box-shadow: 0 12px 35px rgba(76, 183, 255, .22); }
+      .button.secondary { border-color: var(--line); color: var(--ink); background: rgba(255,255,255,.04); }
+      .trust { margin-top: 21px; color: #90a3bc; font-size: .88rem; }
+      .product-card { overflow: hidden; border: 1px solid var(--line); border-radius: 22px; background: linear-gradient(155deg, rgba(36, 48, 80, .91), rgba(14, 22, 42, .84)); box-shadow: 0 28px 70px rgba(0, 0, 0, .28); }
+      .card-top { display: flex; gap: 12px; padding: 18px; border-bottom: 1px solid var(--line); color: #c3d0e2; font-size: .78rem; }
+      .dot { width: 9px; height: 9px; border-radius: 50%; background: #ff5f57; box-shadow: 15px 0 #ffbd2e, 30px 0 #28c840; }
+      .card-body { padding: 25px; }
+      .copy-label { margin-bottom: 12px; color: #a7b9ce; font-size: .78rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+      .transcript { display: grid; gap: 12px; padding: 18px; border: 1px solid rgba(99, 179, 255, .23); border-radius: 13px; background: rgba(5, 10, 22, .42); }
+      .line { display: flex; gap: 12px; align-items: baseline; color: #dbeafe; font-size: .93rem; }
+      .time { flex: 0 0 56px; color: var(--purple); font: .78rem ui-monospace, SFMono-Regular, Menlo, monospace; }
+      .copybar { display: flex; align-items: center; justify-content: space-between; margin-top: 18px; padding: 12px 14px; border-radius: 11px; color: #b6f5d3; background: rgba(65, 219, 148, .12); font-size: .86rem; }
+      .copybar strong { color: var(--green); }
+      .features { padding: 87px 0; border-top: 1px solid var(--line); }
+      .section-title { max-width: 580px; margin: 0 auto 42px; text-align: center; }
+      h2 { margin: 0 0 12px; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.06; letter-spacing: -.045em; }
+      .section-title p { margin: 0; color: var(--muted); }
+      .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .feature { padding: 25px; border: 1px solid var(--line); border-radius: 17px; background: var(--surface); }
+      .feature-icon { display: grid; width: 42px; height: 42px; margin-bottom: 17px; place-items: center; border-radius: 12px; background: rgba(118, 168, 255, .14); font-size: 1.25rem; }
+      .feature h3 { margin: 0 0 8px; font-size: 1.05rem; }
+      .feature p { margin: 0; color: var(--muted); font-size: .94rem; }
+      .how { padding: 83px 0; }
+      .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 920px; margin: 0 auto; }
+      .step { position: relative; padding-left: 52px; }
+      .step-num { position: absolute; top: 0; left: 0; display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid rgba(176, 140, 255, .55); border-radius: 50%; color: #d8c7ff; font-weight: 750; }
+      .step h3 { margin: 4px 0 7px; font-size: 1rem; }
+      .step p { margin: 0; color: var(--muted); font-size: .92rem; }
+      .cta { margin: 18px 0 66px; padding: 52px 28px; border: 1px solid rgba(125, 178, 255, .25); border-radius: 23px; background: linear-gradient(120deg, rgba(60, 100, 206, .25), rgba(142, 77, 195, .22)); text-align: center; }
+      .cta h2 { max-width: 600px; margin: 0 auto 14px; }
+      .cta p { margin: 0 auto 24px; color: var(--muted); }
+      footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; padding: 24px 0 32px; border-top: 1px solid var(--line); color: #95a7bd; font-size: .85rem; }
+      footer a { color: #c7d5e7; text-decoration: none; }
+      footer a:hover { color: white; }
+      @media (max-width: 760px) { .hero { grid-template-columns: 1fr; gap: 35px; min-height: auto; padding-top: 52px; } .feature-grid, .steps { grid-template-columns: 1fr; } .steps { gap: 22px; } .product-card { max-width: 500px; } }
+      @media (max-width: 440px) { .wrap { width: min(100% - 30px, 1120px); } .top-link { display: none; } h1 { font-size: 2.85rem; } .actions { display: grid; } .button { width: 100%; } }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <a class="brand" href="#top" aria-label="SubCopy home"><span class="brand-mark" aria-hidden="true">S</span>SubCopy</a>
+        <a class="top-link" href="https://github.com/globa-me/SubCopy" target="_blank" rel="noreferrer">View source ↗</a>
+      </header>
+
+      <main id="top">
+        <section class="hero">
+          <div>
+            <div class="eyebrow">YouTube transcript copier</div>
+            <h1>Keep the words.<br>Skip the busywork.</h1>
+            <p class="lead">SubCopy copies a YouTube video's visible subtitles to your clipboard in one click — as clean text or with searchable timestamps.</p>
+            <div class="actions">
+              <a class="button primary" href="https://chromewebstore.google.com/detail/subcopy/fimcpincagfeocllidclnchppdpeihai" target="_blank" rel="noreferrer">Add to Chrome <span aria-hidden="true">↗</span></a>
+              <a class="button secondary" href="#how-it-works">How it works</a>
+            </div>
+            <div class="trust">Free to use · Version 1.1 · No data collection</div>
+          </div>
+          <div class="product-card" aria-label="SubCopy transcript preview">
+            <div class="card-top"><span class="dot" aria-hidden="true"></span><span style="margin-left:27px">youtube.com · SubCopy</span></div>
+            <div class="card-body">
+              <div class="copy-label">Copied with timestamps</div>
+              <div class="transcript">
+                <div class="line"><span class="time">00:00:04</span><span>Welcome — let's look at the key idea.</span></div>
+                <div class="line"><span class="time">00:00:12</span><span>SubCopy makes saving subtitles effortless.</span></div>
+                <div class="line"><span class="time">00:00:20</span><span>Choose timestamps, or keep only the text.</span></div>
+              </div>
+              <div class="copybar"><span>Transcript copied to clipboard</span><strong>✓</strong></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="features" aria-labelledby="features-title">
+          <div class="section-title"><h2 id="features-title">Everything you need, right in the video.</h2><p>No tabs, no downloads, no manual transcript selection.</p></div>
+          <div class="feature-grid">
+            <article class="feature"><div class="feature-icon">⚡</div><h3>One-click copy</h3><p>Open the extension while watching a YouTube video and copy the transcript straight to your clipboard.</p></article>
+            <article class="feature"><div class="feature-icon">⌘</div><h3>Your preferred format</h3><p>Copy clean text for notes, or include timestamps to search and reference every moment.</p></article>
+            <article class="feature"><div class="feature-icon">◎</div><h3>Made for everyone</h3><p>SubCopy is available in English, Indonesian, Spanish, French, Russian, Arabic, Hindi and Chinese.</p></article>
+          </div>
+        </section>
+
+        <section class="how" id="how-it-works" aria-labelledby="how-title">
+          <div class="section-title"><h2 id="how-title">From video to text in three steps.</h2></div>
+          <div class="steps">
+            <article class="step"><span class="step-num">1</span><h3>Open a video</h3><p>Go to any YouTube video that has captions or a transcript available.</p></article>
+            <article class="step"><span class="step-num">2</span><h3>Click SubCopy</h3><p>Select the SubCopy icon in Chrome's extensions menu.</p></article>
+            <article class="step"><span class="step-num">3</span><h3>Choose a format</h3><p>Copy with timestamps or without them. The text is ready to paste immediately.</p></article>
+          </div>
+        </section>
+
+        <section class="cta"><h2>Your next useful transcript is one click away.</h2><p>Install SubCopy from the Chrome Web Store and start saving what matters.</p><a class="button primary" href="https://chromewebstore.google.com/detail/subcopy/fimcpincagfeocllidclnchppdpeihai" target="_blank" rel="noreferrer">Install SubCopy</a></section>
+      </main>
+
+      <footer><span>© 2026 Gennadiy Zakharov &amp; Ivan Kononov</span><span><a href="https://github.com/globa-me/SubCopy" target="_blank" rel="noreferrer">GitHub</a> · <a href="https://zakharov.asia/" target="_blank" rel="noreferrer">Developer website</a></span></footer>
+    </div>
+  </body>
+</html>

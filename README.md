@@ -1,25 +1,42 @@
 # SubCopy
 
-SubCopy is a Chrome extension that copies visible YouTube subtitles to the clipboard in one click.
+Copy a YouTube video's visible subtitles to the clipboard in one click — as clean text or with timestamps.
 
-## What Changed in 1.1 (vs 1.0)
+**Install:** [Chrome Web Store](https://chromewebstore.google.com/detail/subcopy/fimcpincagfeocllidclnchppdpeihai) · **Website:** [globa-me.github.io/SubCopy](https://globa-me.github.io/SubCopy/)
 
-- Added full i18n support via `_locales` and localized manifest fields (`name`, `description`).
-- Added localized popup labels and footer text.
-- Replaced popup `alert()` dialogs with in-page toast notifications (success/error/info).
-- Moved subtitle extraction logic into a self-contained injected function in `popup.js` (removed separate `content.js` file).
-- Moved popup styles inline in `popup.html` (removed separate `popup.css` file).
-- Updated extension version from `1.0` to `1.1`.
+## Current release
 
-## Usage
+Version **1.1** (published February 20, 2026) includes:
 
-1. Open a YouTube video with subtitles.
+- Localized extension name, description and popup in 8 languages: English, Indonesian, Spanish, French, Russian, Arabic, Hindi and Chinese.
+- Non-intrusive in-page notifications for successful copies and errors.
+- A streamlined flow: the popup closes immediately after copying.
+- Transcript extraction through YouTube's player API with a transcript-panel fallback.
+- Two copy modes: with timestamps or plain text.
+
+## Use SubCopy
+
+1. Open a YouTube video with captions or a transcript.
 2. Click the SubCopy extension icon.
-3. Choose:
-- `Copy with timestamps`
-- `Copy without timestamps`
+3. Select **Copy with timestamps** or **Copy without timestamps**.
+4. Paste the copied transcript wherever you need it.
 
-The copied text is written to your clipboard.
+## Development
+
+This is a Manifest V3 Chrome extension with no build step:
+
+- `manifest.json` — extension metadata and required permissions.
+- `popup.html` / `popup.js` — popup interface and subtitle extraction.
+- `_locales/` — Chrome i18n messages.
+- `icons/` — extension and website icon assets.
+- `docs/` — the static GitHub Pages website.
+- `.github/workflows/deploy-pages.yml` — deploys `docs/` to GitHub Pages after changes reach `main`.
+
+To test locally, load the `SubCopy` directory as an unpacked extension from `chrome://extensions` with Developer mode enabled.
+
+## Privacy
+
+SubCopy does not collect or use your data. It only reads captions from the YouTube page you actively open and writes the transcript to your clipboard when you choose to copy it.
 
 ## Authors
 
