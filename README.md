@@ -1,44 +1,37 @@
-# SubCopy
+<div align="center">
+  <img src="promo_assets/release-v1.2/promo-marquee-1400x560.jpg" alt="SubCopy — copy YouTube captions in one click" width="100%">
 
-Copy a YouTube video's visible subtitles to the clipboard in one click — as clean text or with timestamps.
+  # SubCopy
 
-**Install:** [Chrome Web Store](https://chromewebstore.google.com/detail/subcopy/fimcpincagfeocllidclnchppdpeihai) · **Website:** [globa-me.github.io/SubCopy](https://globa-me.github.io/SubCopy/)
+  Copy YouTube captions, thumbnails, and public video details in one click.
 
-## Current release
+  [![Chrome Web Store](https://img.shields.io/badge/Install-Chrome_Web_Store-4285F4?logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/subcopy/fimcpincagfeocllidclnchppdpeihai)
+  [![Manifest V3](https://img.shields.io/badge/Manifest-V3-34A853)](manifest.json)
+  [![Privacy](https://img.shields.io/badge/Privacy-No_tracking-0F9D58)](docs/privacy-policy.md)
+</div>
 
-Version **1.1** (published February 20, 2026) includes:
+## Features
 
-- Localized extension name, description and popup in 8 languages: English, Indonesian, Spanish, French, Russian, Arabic, Hindi and Chinese.
-- Non-intrusive in-page notifications for successful copies and errors.
-- A streamlined flow: the popup closes immediately after copying.
-- Transcript extraction through YouTube's player API with a transcript-panel fallback.
-- Two copy modes: with timestamps or plain text.
+- Captions with timestamps or as clean text
+- Language selection for available subtitle tracks
+- Highest-resolution thumbnail download or clipboard copy
+- Video details exported as Markdown: chapters, tags, links, and metadata
+- YouTube Shorts support and interface localization in 8 languages
 
-## Use SubCopy
+<p align="center">
+  <img src="promo_assets/release-v1.2/screenshot-subcopy-en-1280x800.jpg" alt="SubCopy extension on a YouTube video" width="900">
+</p>
 
-1. Open a YouTube video with captions or a transcript.
-2. Click the SubCopy extension icon.
-3. Select **Copy with timestamps** or **Copy without timestamps**.
-4. Paste the copied transcript wherever you need it.
+## Use
 
-## Development
+Open a YouTube video, click the SubCopy icon, then choose the content and format you need.
 
-This is a Manifest V3 Chrome extension with no build step:
-
-- `manifest.json` — extension metadata and required permissions.
-- `popup.html` / `popup.js` — popup interface and subtitle extraction.
-- `_locales/` — Chrome i18n messages.
-- `icons/` — extension and website icon assets.
-- `docs/` — the static GitHub Pages website.
-- `.github/workflows/deploy-pages.yml` — deploys `docs/` to GitHub Pages after changes reach `main`.
-
-To test locally, load the `SubCopy` directory as an unpacked extension from `chrome://extensions` with Developer mode enabled.
+For local testing, enable Developer mode at `chrome://extensions`, choose **Load unpacked**, and select this directory. SubCopy is a Manifest V3 extension with no build step.
 
 ## Privacy
 
-SubCopy does not collect or use your data. It only reads captions from the YouTube page you actively open and writes the transcript to your clipboard when you choose to copy it.
+SubCopy has no analytics or tracking and does not send user data to developer-controlled servers. See the [privacy policy](docs/privacy-policy.md).
 
 ## Authors
 
-- Gennadiy Zakharov
-- [Ivan Kononov](https://github.com/konon4)
+Gennadiy Zakharov · [Ivan Kononov](https://github.com/konon4)

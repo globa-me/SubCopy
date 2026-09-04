@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SubCopy 1.2 Store Assets</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; }
+    body {
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #f8fafc;
+      background: #061426;
+    }
+    .asset { position: relative; display: none; width: 100vw; height: 100vh; overflow: hidden; }
+    .asset.active { display: block; }
+    .backdrop {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      filter: saturate(.92) contrast(1.03);
+    }
+    .shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(3, 12, 24, .68), rgba(3, 12, 24, .08)); }
+    .logo { display: flex; align-items: center; gap: 20px; }
+    .logo img { display: block; border-radius: 22%; box-shadow: 0 18px 50px rgba(0,0,0,.3); }
+    .brand { font-weight: 780; letter-spacing: -.04em; }
+    .eyebrow { color: #5ee1b7; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 9px; padding: 11px 15px;
+      border: 1px solid rgba(148, 163, 184, .25); border-radius: 999px;
+      background: rgba(15, 35, 54, .72); color: #dce8f5; font-weight: 650;
+      box-shadow: inset 0 1px rgba(255,255,255,.08);
+    }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: #22c98b; box-shadow: 0 0 18px #22c98b; }
+
+    /* Store screenshot: 1280 x 800 */
+    #screenshot { background: #07182a; padding: 42px 46px; }
+    #screenshot .topline { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; }
+    #screenshot .topline .logo { gap: 13px; }
+    #screenshot .topline img { width: 52px; height: 52px; border-radius: 14px; }
+    #screenshot .topline .brand { font-size: 30px; }
+    #screenshot .topline .version { color: #9fb2c8; font-size: 17px; font-weight: 650; }
+    .browser {
+      position: absolute; z-index: 2; left: 46px; right: 46px; top: 116px; bottom: 42px;
+      overflow: hidden; border: 1px solid rgba(148, 163, 184, .24); border-radius: 24px;
+      background: #fff; box-shadow: 0 35px 90px rgba(0,0,0,.4);
+    }
+    .browserbar {
+      height: 61px; display: flex; align-items: center; gap: 12px; padding: 0 20px;
+      background: #f8fafc; border-bottom: 1px solid #dbe4ee;
+    }
+    .traffic { display: flex; gap: 8px; margin-right: 10px; }
+    .traffic i { display:block; width: 12px; height: 12px; border-radius: 50%; }
+    .traffic i:nth-child(1) { background:#ff605c; } .traffic i:nth-child(2) { background:#ffbd44; } .traffic i:nth-child(3) { background:#00ca4e; }
+    .address { flex: 1; padding: 10px 16px; border-radius: 12px; background: #edf2f7; color: #607086; font-size: 14px; }
+    .browser-body { position: relative; height: calc(100% - 61px); background: #f7f8fa; }
+    .video-shell { position: absolute; left: 26px; top: 28px; width: 790px; }
+    .video-frame { position: relative; overflow: hidden; aspect-ratio: 16/9; border-radius: 13px; background:#0b1020; box-shadow: 0 15px 34px rgba(15,23,42,.18); }
+    .video-frame img { width:100%; height:100%; object-fit:cover; }
+    .play { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:78px; height:54px; border-radius:15px; background:#ff0033; }
+    .play:after { content:""; position:absolute; left:31px; top:15px; border-left:22px solid white; border-top:12px solid transparent; border-bottom:12px solid transparent; }
+    .video-title { margin-top: 16px; color:#172033; font-size:22px; font-weight:760; }
+    .video-meta { margin-top:8px; color:#6b7a90; font-size:16px; }
+    .side-lines { position:absolute; right:24px; top:34px; width:300px; }
+    .side-line { height:73px; margin-bottom:14px; border-radius:12px; background:linear-gradient(90deg,#e7edf4,#f5f7fa); }
+    .popup-card {
+      position:absolute; z-index:3; right:56px; top:95px; width:360px; padding:0;
+      border-radius:18px; overflow:hidden; background:#fff;
+      box-shadow:0 28px 80px rgba(2,8,23,.38), 0 0 0 1px rgba(148,163,184,.28);
+    }
+    .popup-card img { display:block; width:100%; height:auto; }
+    .caption-note {
+      position:absolute; z-index:4; left:96px; bottom:175px; padding:14px 18px;
+      border-radius:12px; background:rgba(4,18,31,.9); color:white; font-size:19px; font-weight:680;
+      box-shadow:0 14px 36px rgba(0,0,0,.25);
+    }
+    .caption-note span { color:#54e3b0; }
+
+    /* Small promo: 440 x 280 */
+    #small { padding: 30px 30px 26px; }
+    #small .shade { background: linear-gradient(105deg, rgba(2,10,22,.92), rgba(2,10,22,.36)); }
+    #small .content { position:relative; z-index:2; }
+    #small .logo { gap:13px; }
+    #small .logo img { width:58px; height:58px; border-radius:14px; }
+    #small .brand { font-size:34px; }
+    #small h1 { margin:23px 0 9px; max-width:350px; font-size:28px; line-height:1.04; letter-spacing:-.035em; }
+    #small p { margin:0; color:#c9d7e7; font-size:15px; line-height:1.35; }
+    #small .features { display:flex; gap:8px; margin-top:20px; }
+    #small .pill { padding:7px 10px; font-size:11px; gap:6px; }
+    #small .dot { width:6px; height:6px; }
+
+    /* Marquee promo: 1400 x 560 */
+    #marquee { padding: 70px 84px; }
+    #marquee .shade { background: linear-gradient(90deg, rgba(2,9,20,.94) 0%, rgba(2,9,20,.67) 47%, rgba(2,9,20,.14) 100%); }
+    #marquee .content { position:relative; z-index:2; width:610px; }
+    #marquee .logo img { width:82px; height:82px; border-radius:20px; }
+    #marquee .brand { font-size:54px; }
+    #marquee h1 { margin:42px 0 16px; font-size:58px; line-height:1.02; letter-spacing:-.045em; }
+    #marquee .sub { margin:0; color:#c9d7e7; font-size:23px; line-height:1.4; }
+    #marquee .features { display:flex; flex-wrap:wrap; gap:11px; margin-top:32px; }
+    #marquee .pill { font-size:16px; }
+    #marquee .product {
+      position:absolute; z-index:3; right:120px; top:48px; width:405px; padding:16px;
+      border-radius:30px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2);
+      box-shadow:0 40px 100px rgba(0,0,0,.42); backdrop-filter:blur(15px); transform:rotate(1.5deg);
+    }
+    #marquee .product img { display:block; width:100%; border-radius:18px; }
+
+    /* Store icon: 128 x 128 */
+    #icon { display:none; place-items:center; background:#43a047; }
+    #icon.active { display:grid; }
+    #icon img { display:block; width:116px; height:116px; }
+  </style>
+</head>
+<body>
+  <section id="screenshot" class="asset">
+    <img class="backdrop" src="brand-background.png" alt="">
+    <div class="shade"></div>
+    <div class="topline">
+      <div class="logo"><img src="../../../icons/icon128.png" alt=""><span class="brand">SubCopy</span></div>
+      <div class="version">Version 1.2 · English interface</div>
+    </div>
+    <div class="browser">
+      <div class="browserbar"><span class="traffic"><i></i><i></i><i></i></span><div class="address">youtube.com/watch</div></div>
+      <div class="browser-body">
+        <div class="video-shell">
+          <div class="video-frame"><img src="brand-background.png" alt=""><span class="play"></span></div>
+          <div class="video-title">Your YouTube video</div>
+          <div class="video-meta">Captions available · Multiple languages</div>
+        </div>
+        <div class="side-lines"><div class="side-line"></div><div class="side-line"></div><div class="side-line"></div><div class="side-line"></div></div>
+      </div>
+    </div>
+    <div class="popup-card"><img src="popup-content-en.png" alt="SubCopy English popup"></div>
+    <div class="caption-note"><span>✓</span> Copy captions with or without timestamps</div>
+  </section>
+
+  <section id="small" class="asset">
+    <img class="backdrop" src="brand-background.png" alt=""><div class="shade"></div>
+    <div class="content">
+      <div class="logo"><img src="../../../icons/icon128.png" alt=""><span class="brand">SubCopy</span></div>
+      <h1>YouTube captions in one click.</h1>
+      <p>Copy subtitles, save covers, and capture public video info.</p>
+      <div class="features"><span class="pill"><i class="dot"></i>Captions</span><span class="pill"><i class="dot"></i>Covers</span><span class="pill"><i class="dot"></i>Video info</span></div>
+    </div>
+  </section>
+
+  <section id="marquee" class="asset">
+    <img class="backdrop" src="brand-background.png" alt=""><div class="shade"></div>
+    <div class="content">
+      <div class="logo"><img src="../../../icons/icon128.png" alt=""><span class="brand">SubCopy</span></div>
+      <h1>Copy YouTube captions in one click.</h1>
+      <p class="sub">Clean text, timestamps, high-resolution covers, and public video information — directly from the active video.</p>
+      <div class="features"><span class="pill"><i class="dot"></i>Multiple languages</span><span class="pill"><i class="dot"></i>YouTube Shorts</span><span class="pill"><i class="dot"></i>No tracking</span></div>
+    </div>
+    <div class="product"><img src="popup-content-en.png" alt="SubCopy English popup"></div>
+  </section>
+
+  <section id="icon" class="asset"><img src="../../../icons/icon128.png" alt="SubCopy"></section>
+
+  <script>
+    const requested = new URLSearchParams(location.search).get('asset') || 'screenshot';
+    document.getElementById(requested)?.classList.add('active');
+  </script>
+</body>
+</html>
