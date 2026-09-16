@@ -8,6 +8,13 @@
   [![Chrome Web Store](https://img.shields.io/badge/Install-Chrome_Web_Store-4285F4?logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/subcopy/fimcpincagfeocllidclnchppdpeihai)
   [![Manifest V3](https://img.shields.io/badge/Manifest-V3-34A853)](manifest.json)
   [![Privacy](https://img.shields.io/badge/Privacy-No_tracking-0F9D58)](docs/privacy-policy.md)
+
+  **Support independent GZ Apps development**
+
+  Follow development updates and member posts while helping me improve this project.
+
+  [![Support on Patreon](https://img.shields.io/badge/Support_on-Patreon-FF424D?style=for-the-badge&logo=patreon&logoColor=white)](https://www.patreon.com/c/globa_me)
+  [![Support on Boosty](https://img.shields.io/badge/Support_on-Boosty-F15F2C?style=for-the-badge)](https://boosty.to/globa_me)
 </div>
 
 ## Features
